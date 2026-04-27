@@ -19,7 +19,7 @@ public class CheckingAccount extends Account {
             double finalBalance = getBalance();
 
             Transaction transaction = new Transaction(
-                    Transaction.TYPE_DEPOSIT_CHECKING,
+                    Transaction.type_deposit_checking,
                     amount,
                     initialBalance,
                     finalBalance);

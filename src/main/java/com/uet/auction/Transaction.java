@@ -5,7 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Transaction {
-    public static final int TYPE_DEPOSIT_CHECKING = 1;
+    public static final int type_deposit_checking = 1;
     public static final int TYPE_WITHDRAW_CHECKING = 2;
     public static final int TYPE_DEPOSIT_SAVINGS = 3;
     public static final int TYPE_WITHDRAW_SAVINGS = 4;
@@ -58,7 +58,7 @@ public class Transaction {
 
     public static String getTypeString(int transactionType) {
         switch (transactionType) {
-            case TYPE_DEPOSIT_CHECKING:
+            case type_deposit_checking:
                 return "Nạp tiền vãng lai";
             case TYPE_WITHDRAW_CHECKING:
                 return "Rút tiền vãng lai";
