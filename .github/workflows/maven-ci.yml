@@ -1,0 +1,42 @@
+name: Maven CI
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  build:
+    name: Build and test Maven project
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v6
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+          cache: maven
+
+      - name: Run Checkstyle
+        run: mvn --batch-mode checkstyle:check
+
+      - name: Run unit tests
+        run: mvn --batch-mode test
+
+      - name: Package application
+        run: mvn --batch-mode package
+
+      - name: Upload JAR artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: bai2-jar
+          path: target/*.jar
