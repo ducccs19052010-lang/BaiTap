@@ -1,7 +1,7 @@
 package com.uet.auction;
 
 public class Main {
-    public static void main(String[] args) {
+    static void main(String[] args) {
         Bank bank = new Bank();
 
         Account account = new SavingsAccount(123456789L, 10000.0);

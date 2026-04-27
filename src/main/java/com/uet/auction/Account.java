@@ -3,6 +3,7 @@ package com.uet.auction;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,6 +16,7 @@ public abstract class Account {
     private long accountNumber;
     private double balance;
     private List<Transaction> transactions;
+
     protected Account(long accountNumber, double balance) {
         this.accountNumber = accountNumber;
         this.balance = balance;
@@ -78,9 +80,7 @@ public abstract class Account {
 
     public String getTransactionHistory() {
         StringBuilder builder = new StringBuilder();
-        builder.append("Lịch sử giao dịch của tài khoản ")
-                .append(accountNumber)
-                .append(":\n");
+        builder.append("Lịch sử giao dịch của tài khoản ").append(accountNumber).append(":\n");
 
         for (int index = 0; index < transactions.size(); index++) {
             builder.append(transactions.get(index).getTransactionSummary());
@@ -98,10 +98,9 @@ public abstract class Account {
         if (this == object) {
             return true;
         }
-        if (!(object instanceof Account)) {
+        if (!(object instanceof Account account)) {
             return false;
         }
-        Account account = (Account) object;
         return accountNumber == account.accountNumber;
     }
 

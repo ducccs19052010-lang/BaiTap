@@ -18,11 +18,7 @@ public class CheckingAccount extends Account {
             doDepositing(amount);
             double finalBalance = getBalance();
 
-            Transaction transaction = new Transaction(
-                    Transaction.type_deposit_checking,
-                    amount,
-                    initialBalance,
-                    finalBalance);
+            Transaction transaction = new Transaction(Transaction.type_deposit_checking, amount, initialBalance, finalBalance);
 
             addTransaction(transaction);
             LOGGER.info("Checking deposit successful: amount={}", amount);
@@ -39,11 +35,7 @@ public class CheckingAccount extends Account {
             doWithdrawing(amount);
             double finalBalance = getBalance();
 
-            Transaction transaction = new Transaction(
-                    Transaction.TYPE_WITHDRAW_CHECKING,
-                    amount,
-                    initialBalance,
-                    finalBalance);
+            Transaction transaction = new Transaction(Transaction.TYPE_WITHDRAW_CHECKING, amount, initialBalance, finalBalance);
 
             addTransaction(transaction);
             LOGGER.info("Checking withdraw successful: amount={}", amount);

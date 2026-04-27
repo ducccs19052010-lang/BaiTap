@@ -20,11 +20,7 @@ public class SavingsAccount extends Account {
             doDepositing(amount);
             double finalBalance = getBalance();
 
-            Transaction transaction = new Transaction(
-                    Transaction.TYPE_DEPOSIT_SAVINGS,
-                    amount,
-                    initialBalance,
-                    finalBalance);
+            Transaction transaction = new Transaction(Transaction.TYPE_DEPOSIT_SAVINGS, amount, initialBalance, finalBalance);
 
             addTransaction(transaction);
             LOGGER.info("Savings deposit successful: amount={}", amount);
@@ -42,11 +38,7 @@ public class SavingsAccount extends Account {
             doWithdrawing(amount);
 
             double finalBalance = getBalance();
-            Transaction transaction = new Transaction(
-                    Transaction.TYPE_WITHDRAW_SAVINGS,
-                    amount,
-                    initialBalance,
-                    finalBalance);
+            Transaction transaction = new Transaction(Transaction.TYPE_WITHDRAW_SAVINGS, amount, initialBalance, finalBalance);
 
             addTransaction(transaction);
             LOGGER.info("Savings withdraw successful: amount={}", amount);
@@ -55,8 +47,7 @@ public class SavingsAccount extends Account {
         }
     }
 
-    private void validateSavingsWithdrawal(double amount, double initialBalance)
-            throws BankException {
+    private void validateSavingsWithdrawal(double amount, double initialBalance) throws BankException {
         if (amount > MAX_WITHDRAW_AMOUNT) {
             throw new InvalidFundingAmountException(amount);
         }

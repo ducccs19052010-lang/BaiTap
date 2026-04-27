@@ -1,6 +1,7 @@
 package com.uet.auction;
 
 import java.util.Locale;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,6 +23,21 @@ public class Transaction {
         this.amount = amount;
         this.initialBalance = initialBalance;
         this.finalBalance = finalBalance;
+    }
+
+    public static String getTypeString(int transactionType) {
+        switch (transactionType) {
+            case type_deposit_checking:
+                return "Nạp tiền vãng lai";
+            case TYPE_WITHDRAW_CHECKING:
+                return "Rút tiền vãng lai";
+            case TYPE_DEPOSIT_SAVINGS:
+                return "Nạp tiền tiết kiệm";
+            case TYPE_WITHDRAW_SAVINGS:
+                return "Rút tiền tiết kiệm";
+            default:
+                return "Không rõ";
+        }
     }
 
     public int getType() {
@@ -56,29 +72,10 @@ public class Transaction {
         this.finalBalance = finalBalance;
     }
 
-    public static String getTypeString(int transactionType) {
-        switch (transactionType) {
-            case type_deposit_checking:
-                return "Nạp tiền vãng lai";
-            case TYPE_WITHDRAW_CHECKING:
-                return "Rút tiền vãng lai";
-            case TYPE_DEPOSIT_SAVINGS:
-                return "Nạp tiền tiết kiệm";
-            case TYPE_WITHDRAW_SAVINGS:
-                return "Rút tiền tiết kiệm";
-            default:
-                return "Không rõ";
-        }
-    }
-
     public String getTransactionSummary() {
         LOGGER.debug("Creating transaction summary for type={}", type);
 
-        return "- Kiểu giao dịch: " + getTypeString(type)
-                + ". Số dư ban đầu: $" + formatMoney(initialBalance)
-                + ". Số tiền: $" + formatMoney(amount)
-                + ". Số dư cuối: $" + formatMoney(finalBalance)
-                + ".";
+        return "- Kiểu giao dịch: " + getTypeString(type) + ". Số dư ban đầu: $" + formatMoney(initialBalance) + ". Số tiền: $" + formatMoney(amount) + ". Số dư cuối: $" + formatMoney(finalBalance) + ".";
     }
 
     private String formatMoney(double value) {

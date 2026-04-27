@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -121,9 +122,7 @@ public class Bank {
 
     public String getCustomersInfoByNameOrder() {
         List<Customer> sortedCustomers = new ArrayList<>(customers);
-        sortedCustomers.sort(
-                Comparator.comparing(Customer::getFullName)
-                        .thenComparingLong(Customer::getIdNumber));
+        sortedCustomers.sort(Comparator.comparing(Customer::getFullName).thenComparingLong(Customer::getIdNumber));
         return buildCustomerInfo(sortedCustomers);
     }
 
