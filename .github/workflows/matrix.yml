@@ -1,0 +1,47 @@
+name: Maven CI Matrix
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    name: Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+
+      - name: Run Checkstyle
+        working-directory: Bai2
+        run: mvn --batch-mode checkstyle:check
+
+      - name: Run tests
+        working-directory: Bai2
+        run: mvn --batch-mode test
+
+      - name: Package project
+        working-directory: Bai2
+        run: mvn --batch-mode package
+
+      - name: Upload JAR artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: bai2-jar-${{ matrix.os }}
+          path: Bai2/target/*.jar
