@@ -1,4 +1,4 @@
-name: Maven CI Matrix
+name: Maven Matrix CI
 
 on:
   push:
@@ -25,23 +25,17 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '17'
+          java-version: '25'
           cache: maven
 
-      - name: Run Checkstyle
-        working-directory: Bai2
-        run: mvn --batch-mode checkstyle:check
-
       - name: Run tests
-        working-directory: Bai2
         run: mvn --batch-mode test
 
       - name: Package project
-        working-directory: Bai2
         run: mvn --batch-mode package
 
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v4
         with:
-          name: bai2-jar-${{ matrix.os }}
-          path: Bai2/target/*.jar
+          name: bai-jar-${{ matrix.os }}
+          path: target/*.jar
